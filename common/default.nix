@@ -2,13 +2,19 @@
 
 {
   environment.systemPackages = with pkgs; [
-    git 
+    git
     wget
     clang
     rustc
     cargo
     neovim
+    cmake
+    xmake
   ];
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  security.sudo.enable = true;
+  security.sudo.wheelNeedsPassword = false;
   environment.variables.EDITOR = "nvim";
 }

@@ -1,5 +1,12 @@
-{ config, pkgs, ...}:
+{ config, pkgs, ... }:
 
 {
-  users.
+  users.users.cyclesw = {
+    isNormalUser = true;
+    home = "/home/cyclesw";
+    createHome = true;
+    useDefaultShell = true;
+    extraGroups = [ "wheel" ];
+    group = "users";
+  };
 }
