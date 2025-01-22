@@ -10,6 +10,7 @@
     neovim
     cmake
     xmake
+    lazygit
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
