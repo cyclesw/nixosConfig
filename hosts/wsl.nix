@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, modulesPath, ... }:
+{ config, lib, pkgs-unstable, inputs, modulesPath, ... }:
 
 {
   imports = [
@@ -8,8 +8,8 @@
 
   wsl.enable = true;
   wsl.defaultUser = "cyclesw";
-  wsl.nativeSystemd = true;
-  networking.hostName = "LAPTOP-7K6A958G";
+  #  wsl.nativeSystemd = true;
+  networking.hostName = "wsl";
 
 
   # This value determines the NixOS release from which the default
