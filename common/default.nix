@@ -2,7 +2,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-    git
     wget
     clang
     neovim
@@ -10,8 +9,28 @@
     xmake
     rustc
     cargo
-    nodejs_23
+
+    plocate
   ];
+
+  services.locate = {
+    enable = true;
+    localuser = null; # silence warning
+    package = pkgs.plocate; # use faster locate implementation
+    prunePaths = [
+      "/media"
+      "/mnt/c" # don't index windows drives in WSL
+      "/mnt/d"
+      "/mnt/e"
+      "/mnt/f"
+      "/mnt/wsl"
+ #     "/nix/store"
+      "/nix/var/log/nix"
+      "/tmp"
+      "/var/spool"
+      "/var/tmp"
+    ];
+  };
 
   programs.nix-ld.enable = true;
 

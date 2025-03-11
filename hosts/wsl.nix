@@ -11,6 +11,18 @@
   #  wsl.nativeSystemd = true;
   networking.hostName = "wsl";
 
+  wsl.wslConf = {
+    automount = {
+      enabled = true;
+    };
+    user = {
+      default = "cyclesw";
+    };
+    interop = {
+      enabled = true;
+      appendWindowsPath = false;
+    };
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
