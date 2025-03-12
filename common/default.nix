@@ -3,20 +3,20 @@
 {
   environment.systemPackages = with pkgs; [
     wget
-    clang
     neovim
-    cmake
-    xmake
     rustc
     cargo
 
     plocate
+
+
   ];
 
   services.locate = {
     enable = true;
     localuser = null; # silence warning
     package = pkgs.plocate; # use faster locate implementation
+
     prunePaths = [
       "/media"
       "/mnt/c" # don't index windows drives in WSL
@@ -31,6 +31,10 @@
       "/var/tmp"
     ];
   };
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "dotnet-runtime-6.0.36"
+  ];
 
   programs.nix-ld.enable = true;
 
