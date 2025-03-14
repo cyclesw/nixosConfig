@@ -8,5 +8,6 @@
     useDefaultShell = true;
     extraGroups = [ "wheel" ];
     group = "users";
+    shell = pkgs.nushell;
   };
 }
