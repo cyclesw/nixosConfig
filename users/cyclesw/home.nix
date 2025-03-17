@@ -1,16 +1,17 @@
-{ config, pkgs, lib, pkgs-unstable, specialArgs, ... }:
+{ config, pkgs, lib, pkgs-unstable, username, ... }:
 
 {
   imports = [
     ./core.nix
     ./common.nix
     ./shell
+    ./gui
   ];
 
   programs = {
     git = {
       enable = true;
-      userName = specialArgs.username;
+      userName = username;
       userEmail = "1939653182@qq.com";
     };
   };

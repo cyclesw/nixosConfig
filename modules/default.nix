@@ -14,10 +14,10 @@
     plocate
 
 
-    ### Server DEV ENV ###
-    etcd
+    ### Server DEV ENV
+#    etcd
 
-    ### C++ DEV ENV ###
+    ### C++ DEV ENV
     llvmPackages_latest.lldb
     llvmPackages_latest.libllvm
     llvmPackages_latest.libcxx
@@ -33,8 +33,7 @@
     pkg-config
     
     ### C# Dev Env 
-    # dotnet-sdk_9
-    dotnet-sdk_6
+    # dotnet-sdk_6
 
 
     ### Python3 Dev Env
@@ -62,23 +61,28 @@
     ];
   };
 
-  nixpkgs.config = {
-    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "vscode"
-    ];
-
-    permittedInsecurePackages = [
-      "dotnet-runtime-6.0.36"
-      "dotnet-sdk-6.0.428"
-    ];
-  };
-
-
   programs = {
     nix-ld.enable = true;
   };
 
+  fonts.packages = with pkgs; [
+      jetbrains-mono
+  ];
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  ### Net
+
+  networking = {
+    hosts = {
+      "146.75.114.217" = ["cache.nixos.org"];
+    };
+    nameservers = [
+      "114.114.114.114"
+      "8.8.8.8"
+    ];
+  };
+
 
   security.sudo.enable = true;
   security.sudo.wheelNeedsPassword = false;
