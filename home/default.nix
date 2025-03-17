@@ -1,11 +1,6 @@
 {pkgs, config, ...}:
 
 {
-  imports = [
-    ./nvidia.nix
-    ./configuration.nix
-  ];
-  
   environment.systemPackages = [
     pkgs.gnome-shell-extensions
   ];

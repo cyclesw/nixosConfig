@@ -1,8 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, enableGui, ... }:
 
 {
   imports = [
     ./users.nix
+    ./net
   ];
 
   environment.systemPackages = with pkgs; [
@@ -13,7 +14,6 @@
 
     plocate
 
-
     ### Server DEV ENV
 #    etcd
 
@@ -23,6 +23,7 @@
     llvmPackages_latest.libcxx
     llvmPackages_latest.clang
     clang-tools
+    gdb
 
     ## global lib
 
@@ -70,19 +71,6 @@
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  ### Net
-
-  networking = {
-    hosts = {
-      "146.75.114.217" = ["cache.nixos.org"];
-    };
-    nameservers = [
-      "114.114.114.114"
-      "8.8.8.8"
-    ];
-  };
-
 
   security.sudo.enable = true;
   security.sudo.wheelNeedsPassword = false;

@@ -6,7 +6,7 @@
     nushell = {
       enable = true;
       configFile.source = ./config.nu;
-        # for editing directly to config.nu 
+      # for editing directly to config.nu 
     };  
 
     zoxide = { 

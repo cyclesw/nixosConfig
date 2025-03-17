@@ -35,12 +35,14 @@
 
       gui = let
         username = "cyclesw";
+        enableGui = true;
       in
       nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         
         specialArgs = {
           inherit username;
+          inherit enableGui;
 	        pkgs-unstable = import nixpkgs-unstable {
 	          inherit system;
 	          config.allowUnfree = true;
@@ -50,7 +52,9 @@
         modules = [
           # file
           ./modules/default.nix
-          ./home
+          ./hosts/desktop
+          # nixos-wsl.nixosModules.wsl
+
 
           # home
           home-manager.nixosModules.home-manager
@@ -68,12 +72,19 @@
 
       wsl = let 
         username = "cyclesw";
+        enableGui = false;
       in
       nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
 
         specialArgs = {
           inherit username;
+          inherit inputs;
+          inherit enableGui;
+          pkgs-unstable = import nixpkgs-unstable {
+	          inherit system;
+	          config.allowUnfree = true;
+	        };
         };
 
         modules = [
@@ -87,9 +98,9 @@
           { nix.registry.nixpkgs.flake = nixpkgs; }
 
           # file
-          ./configuration.nix
-          ./hosts/wsl.nix
+          ./hosts/wsl
           ./modules
+          # nixos-wsl.nixosModules.wsl  # 使用 nixos-wsl 模块
 
 
           # home 
@@ -104,7 +115,8 @@
 
             # 使用 home-manager.extraSpecialArgs 自定义传递给 ./home.nix 的参数
             # 取消注释下面这一行，就可以在 home.nix 中使用 flake 的所有 inputs 参数了
-            home-manager.extraSpecialArgs = specialArgs // inputs;
+            home-manager.extraSpecialArgs = specialArgs;
+            # home-manager.extraSpecialArgs = specialArgs // inputs;
           }
         ];
       };

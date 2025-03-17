@@ -1,12 +1,11 @@
-{ config, pkgs, lib, pkgs-unstable, username, ... }:
+{ config, pkgs, lib, pkgs-unstable, username, enableGui, ... }:
 
 {
   imports = [
     ./core.nix
     ./common.nix
     ./shell
-    ./gui
-  ];
+  ] ++ (if enableGui == true then [ ./gui ] else [ ]);
 
   programs = {
     git = {
