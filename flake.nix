@@ -41,15 +41,14 @@
         
         specialArgs = {
           inherit username;
-	  pkgs-unstable = import nixpkgs-unstable {
-	    inherit system;
-	    config.allowUnfree = true;
-	  };
+	        pkgs-unstable = import nixpkgs-unstable {
+	          inherit system;
+	          config.allowUnfree = true;
+	        };
         };
 
         modules = [
           # file
-          ./configuration.nix
           ./modules/default.nix
           ./home
 

@@ -3,6 +3,7 @@
 {
   imports = [
     ./nvidia.nix
+    ./configuration.nix
   ];
   
   environment.systemPackages = [
