@@ -2,12 +2,19 @@
 
 {
   home.packages = with pkgs; [
-    # shell
+    ## shell
     neofetch
     lazygit
     nushell
     zoxide
     carapace
+    tree
+    xclip
+
+    #zsh
+    oh-my-zsh
+    zsh-autosuggestions
+    zsh-syntax-highlighting
 
     #hook
     direnv

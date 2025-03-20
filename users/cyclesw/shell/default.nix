@@ -1,4 +1,4 @@
-{config, lib, pkgs, ...}: 
+{config, lib, pkgs, zsh, ...}: 
 
 # TODO: 分离nushell 
 {
@@ -31,6 +31,17 @@
         };
       };
     };
-  };
 
+    zsh = {
+      enable = true;
+
+      oh-my-zsh = {
+        enable = true;
+        plugins = [
+        "zsh-autosuggestions"
+        "zsh-syntax-highlighting"
+        ];
+      };
+    };
+  };
 }
