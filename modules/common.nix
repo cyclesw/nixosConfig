@@ -18,6 +18,7 @@
     llvmPackages_latest.libcxx
     llvmPackages_latest.clang
     clang-tools
+    gcc
     gdb
 
     ## global lib

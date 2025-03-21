@@ -34,6 +34,12 @@
 
     zsh = {
       enable = true;
+      initExtraFirst = 
+      ''
+        if [[ $TERM != "dumb" ]]; then
+          exec nu
+        fi      
+      '';
 
       oh-my-zsh = {
         enable = true;
