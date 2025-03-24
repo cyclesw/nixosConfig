@@ -10,7 +10,9 @@
     plocate
 
     ### Server DEV ENV
-#    etcd
+    etcd
+    rsync
+    
 
     ### C++ DEV ENV
     llvmPackages_latest.lldb
