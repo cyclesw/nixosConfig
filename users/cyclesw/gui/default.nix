@@ -10,6 +10,8 @@
 
     #ide
     vscode
+    jetbrains-toolbox
+    jetbrains.clion
 
     google-chrome
     mihomo-party
@@ -41,4 +43,6 @@
     gdm
     libsForQt5.qt5.qtwayland
   ];
+
+
 }
