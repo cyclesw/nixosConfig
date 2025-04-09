@@ -10,6 +10,7 @@
     carapace
     tree
     xclip
+    bat
 
     #zsh
     oh-my-zsh

@@ -1,0 +1,7 @@
+{nixpkgs, ...}:
+
+{
+  imports = [
+    ./nvim
+  ];
+}

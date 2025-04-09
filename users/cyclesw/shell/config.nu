@@ -34,6 +34,8 @@ alias ll  = ls -l
 alias la  = ls -a
 alias lla = ls -la
 
+alias cat = bat
+
 
 # Completions
 # mainly pieced together from https://www.nushell.sh/cookbook/external_completers.html
@@ -115,3 +117,5 @@ $env.PATH = ($env.PATH |
 
     direnv export json | from json | default {} | load-env
 }
+
+$env.NIXPKGS_ALLOW_UNFREE = 1   # 允许非自由软件

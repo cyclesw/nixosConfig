@@ -5,6 +5,7 @@
     ./core.nix
     ./common.nix
     ./shell
+    ./tui
   ] ++ (if enableGui == true then [ ./gui ] else [ ]);
 
   programs = {
