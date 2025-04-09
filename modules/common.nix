@@ -19,9 +19,11 @@
     llvmPackages_latest.libllvm
     llvmPackages_latest.libcxx
     llvmPackages_latest.clang
+    llvmPackages_latest.lld
     clang-tools
     gcc
     gdb
+    gnumake
 
     ## global lib
 
