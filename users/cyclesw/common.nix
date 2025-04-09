@@ -5,17 +5,11 @@
     ## shell
     neofetch
     lazygit
-    nushell
     zoxide
     carapace
     tree
     xclip
     bat
-
-    #zsh
-    oh-my-zsh
-    zsh-autosuggestions
-    zsh-syntax-highlighting
 
     #hook
     direnv

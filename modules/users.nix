@@ -8,6 +8,6 @@
     useDefaultShell = true;
     extraGroups = [ "wheel" ];
     group = "users";
-    shell = pkgs.zsh;
+    shell = pkgs.nushell;
   };
 }

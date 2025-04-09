@@ -5,14 +5,17 @@
   programs = {
     nushell = {
       enable = true;
-      configFile.source = ./config.nu;
+      configFile.source = ./nushell/config.nu;
+      loginFile.source =  ./nushell/login.nu;
       # for editing directly to config.nu 
-    };  
+      extraConfig = ''
+        $env.ES_HOME = "${pkgs.elasticsearch}"
+      '';
+    };
 
     zoxide = { 
       enable = true;
       enableNushellIntegration = true;
-
       options = [
       ];
     };
@@ -22,32 +25,25 @@
       enableNushellIntegration = true;
     };
   
-    starship = { enable = true;
-      settings = {
-        add_newline = true;
-        character = { 
-          success_symbol = "[➜](bold green)";
-          error_symbol = "[➜](bold red)";
-        };
-      };
+    starship = {
+      enable = true;
     };
 
     zsh = {
       enable = true;
-      initExtraFirst = 
-      ''
-        if [[ $TERM != "dumb" ]]; then
-          exec nu
-        fi      
-      '';
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
 
       oh-my-zsh = {
         enable = true;
         plugins = [
-        "zsh-autosuggestions"
-        "zsh-syntax-highlighting"
+          "git"
+          "sudo"
         ];
       };
     };
   };
+
+  xdg.configFile."starship.toml".source = ./starship/starship.toml;  # Jetpack Preset
+  
 }

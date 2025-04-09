@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{pkgs, lib, ...}:
 
 {
   environment.systemPackages = with pkgs; [
@@ -6,11 +6,16 @@
     neovim
     rustc
     cargo
+    nix-search-cli
 
+    # shell
+    nushell
+    zsh
     plocate
 
     ### Server DEV ENV
     etcd
+    elasticsearch
     rsync
     
 
@@ -36,10 +41,11 @@
     ### C# Dev Env 
     dotnet-sdk_6
 
+    # vue
+    nodejs
 
     ### Python3 Dev Env
     python3
-    nodejs
   ];
 
   services.locate = {
@@ -66,6 +72,10 @@
 
   nixpkgs.config.permittedInsecurePackages = [
     "dotnet-sdk-6.0.428"
+  ];
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "elasticsearch"
   ];
 
   programs = {
