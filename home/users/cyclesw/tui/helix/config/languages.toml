@@ -1,0 +1,7 @@
+theme = "catppuccin_macchiato"
+
+[[languages]]
+name = "cpp"
+
+[[languages]]
+name = "nix"

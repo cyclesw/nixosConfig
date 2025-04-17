@@ -5,6 +5,7 @@
     ./common.nix
     ./users.nix
     ./net
+    ./services.nix
   ];
 
 }

@@ -2,8 +2,9 @@
   description = "A simple NixOS flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:Nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:Nixos/nixpkgs/nixos-24.11";
 
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
@@ -17,57 +18,58 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
+      # to have it up to date or simply don't specify the nixpkgs input  
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
   };
 
   outputs = inputs @{
     self,
     nixpkgs,
     nixpkgs-unstable,
+    nixpkgs-stable,
     home-manager,
     nix-ld, 
     nixos-wsl, 
     ... # input.xxxx 
-    }: {
+    }: let
+      mypkgs = system: inputs //{
+        pkgs-unstable = import nixpkgs-unstable {
+	        inherit system;
+	        config.allowUnfree = true;
+	      };     
+
+	      pkgs-stable = import nixpkgs-stable {
+	        inherit system;
+	        config.allowUnfree = true;
+	      };
+	    };
+
+       #  pkgs-unstable = import nixpkgs-unstable {
+	      #   inherit (system: inputs);
+	      #   config.allowUnfree = true;
+	      # };     
+							#
+	      # pkgs-stable = import nixpkgs-stable {
+	      #   inherit (system: inputs);
+	      #   config.allowUnfree = true;
+	      # };
+							#
+    in {
     nixosConfigurations = {
 
-      gui = let
-        username = "cyclesw";
+      amd64-linux = import ./machines/x86_64linux.nix {
+        inherit inputs mypkgs;
         enableGui = true;
-      in
-      nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
-        
-        specialArgs = {
-          inherit username;
-          inherit enableGui;
-	        pkgs-unstable = import nixpkgs-unstable {
-	          inherit system;
-	          config.allowUnfree = true;
-	        };
-        };
-
-        modules = [
-          # file
-          ./modules/default.nix
-          ./hosts/desktop
-          # nixos-wsl.nixosModules.wsl
-
-
-          # home
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.users.${username} = import ./users/${username}/home.nix;
-            # 使用 home-manager.extraSpecialArgs 自定义传递给 ./home.nix 的参数
-            # 取消注释下面这一行，就可以在 home.nix 中使用 flake 的所有 inputs 参数了
-            home-manager.extraSpecialArgs = specialArgs // inputs;
-          }
-        ];
       };
 
       wsl = let 

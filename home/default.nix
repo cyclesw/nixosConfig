@@ -1,8 +1,13 @@
-{pkgs, config, ...}:
+{inputs, pkgs, config,  pkgs-unstable, ...}:
 
 {
-  environment.systemPackages = [
-    pkgs.gnome-shell-extensions
+  environment.systemPackages = with pkgs-unstable; [
+    # desktop 
+    hyprland
+    inputs.zen-browser.packages."x86_64-linux".default # beta
+
+    gnome-shell-extensions
+    clash-verge-rev
   ];
 
   i18n.inputMethod = {
@@ -16,13 +21,15 @@
       fcitx5-configtool
       fcitx5-nord
       libsForQt5.fcitx5-qt
-      # fcitx5-chinese-addons
+      fcitx5-chinese-addons
     ];
   };
 
-  environment.variables = {
-    GTK_IM_MODULE = "fcitx";
-    QT_IM_MODULE = "fcitx";
-    XMODIFIERS = "@im=fcitx";
-  };
+  programs.hyprland.enable = true;
+
+  # environment.variables = {
+  #   GTK_IM_MODULE = "fcitx";
+  #   QT_IM_MODULE = "fcitx";
+  #   XMODIFIERS = "@im=fcitx";
+  # };
 }
