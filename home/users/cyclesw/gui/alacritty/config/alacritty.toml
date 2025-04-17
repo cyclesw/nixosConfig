@@ -2,24 +2,21 @@
 history = 2000
 multiplier = 20
 
-[terminal.shell]
-#args = ["-l"]
-program = "nu"
+[terminal]
+shell = { program = "nu", args = ["-l"] }
 
 [window]
-decorations = "none"
+decorations = "None"
 dynamic_padding = false
-startup_mode = "Maximized"
-
-[window.dimensions]
-columns = 120
-lines = 60
+blur = true
+# dimensions = { columns = 120, lines = 40 }
 
 [window.padding]
 x = 10
-y = 15
+y = 10
+
+[selection]
+save_to_clipboard = true
 
 [general]
 live_config_reload = true
-
-[terminal]

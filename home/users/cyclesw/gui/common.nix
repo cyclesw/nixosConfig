@@ -10,37 +10,22 @@
 
     clash-verge-rev
 
-    #ide
-    vscode-fhs
-    jetbrains-toolbox
-    jetbrains.clion
-
-    google-chrome
-    v2ray
-    v2raya
-    nil
-
-    ## wayland
-    swaybg
-    wl-clipboard
-
     # keyboar
     cliphist 
     wl-clipboard
 
-    hyprland
-    pyprland
-    xwayland
-    waybar
-    hyprcursor
-    hypridle
-    rofi
-    wlogout
-    hyprshade
-    waypaper
-    anyrun
-    mako
-    gdm
+    # screen
+    brightnessctl
+
+    #ide
+    vscode
+    jetbrains-toolbox
+    jetbrains.clion
+
+    google-chrome
+    v2raya
+    nil
+
     libsForQt5.qt5.qtwayland
   ];
 }

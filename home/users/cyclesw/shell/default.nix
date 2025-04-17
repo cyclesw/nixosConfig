@@ -13,7 +13,7 @@
       loginFile.source =  ./nushell/login.nu;
       extraConfig = ''
         def nix-switch [name: string, path = "/etc/nixos/"] {
-            nixos-rebuild switch --flake $"(path)#(name)"
+            nixos-rebuild switch --flake $"($path)#($name)"
         }
         
         def nix-clean [] {

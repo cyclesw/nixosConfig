@@ -119,8 +119,4 @@ $env.PATH = ($env.PATH |
 }
 
 $env.NIXPKGS_ALLOW_UNFREE = 1   # 允许非自由软件
-<<<<<<<< HEAD:users/cyclesw/shell/nushell/config.nu
-========
 $env.NIXOS_OZONE_WL = "1"
-
->>>>>>>> 038cfba (update desktop config):home/users/cyclesw/shell/nushell/config.nu

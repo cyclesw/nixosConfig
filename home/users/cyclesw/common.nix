@@ -25,4 +25,6 @@
       nix-direnv.enable = true;
     };
   };
+
+  programs.neovim.defaultEditor = true;
 }
