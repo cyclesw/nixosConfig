@@ -24,7 +24,6 @@
 
     google-chrome
     v2raya
-    nil
 
     libsForQt5.qt5.qtwayland
   ];

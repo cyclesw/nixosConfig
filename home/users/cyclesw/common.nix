@@ -6,7 +6,6 @@
     neofetch
 
     helix
-    fzf
     lazygit
     zoxide
     carapace
@@ -21,7 +20,7 @@
   programs = {
     direnv = {
       enable = true;
-      # enableNushellIntegration = true;
+      enableNushellIntegration = true;
       nix-direnv.enable = true;
     };
   };

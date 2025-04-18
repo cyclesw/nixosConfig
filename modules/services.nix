@@ -2,7 +2,7 @@
 
 {
   services.elasticsearch = {
-    enable = true;
+    # enable = true;
   };
 
   services.elasticsearch = {

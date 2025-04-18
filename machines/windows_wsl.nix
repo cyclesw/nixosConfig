@@ -1,13 +1,20 @@
-# 
 { inputs, system, enableGui, mypkgs, ... }:
 
-let 
+let
   usernames = [
   "cyclesw"
   "root"
   ];
+
+  userImports = builtins.listToAttrs (
+    builtins.map (username: {
+      name = username;
+      value = import ../home/users/${username};
+    }) usernames
+  );
+
 in
-  inputs.nixpkgs.lib.nixosSystem rec {
+inputs.nixpkgs.lib.nixosSystem rec {
   inherit system;
 
   specialArgs = {
@@ -19,19 +26,26 @@ in
   };
 
   modules = [
-    ../hosts/desktop
+  # wsl only
+    inputs.nixos-wsl.nixosModules.wsl
+    {
+      system.stateVersion = "24.11";
+      wsl.enable = true;
+    }
+
+    { nix.registry.nixpkgs.flake = inputs.nixpkgs; }
+
+    # file
+    ../hosts/wsl
     ../modules
 
-    # Home Manager 集成
     inputs.home-manager.nixosModules.home-manager
     {
       home-manager = {
         useGlobalPkgs = true;
         useUserPackages = true;
 
-        users = {
-          cyclesw = import ../home/users/cyclesw;
-        };
+        users = userImports;
 
         extraSpecialArgs = specialArgs // inputs;
       };

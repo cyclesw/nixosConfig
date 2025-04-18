@@ -8,6 +8,8 @@
     useDefaultShell = true;
     extraGroups = [ "wheel" ];
     group = "users";
-    shell = pkgs.nushell;
+    shell = pkgs.zsh;
   };
+
+  nix.settings.trusted-users = [ "root" "cyclesw" ];
 }

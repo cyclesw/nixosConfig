@@ -1,6 +1,10 @@
 {pkgs, pkgs-stable, lib, ...}:
 
 {
+  documentation.enable = true;
+  documentation.man.enable = true;
+  documentation.dev.enable = true;
+
   environment.systemPackages = with pkgs; [
     wget
     neovim
@@ -14,6 +18,8 @@
     plocate
     unzip
     file
+    nil
+    
 
     ### Server DEV ENV
     pkgs-stable.etcd
