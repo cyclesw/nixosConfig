@@ -5,3 +5,6 @@ name = "cpp"
 
 [[languages]]
 name = "nix"
+
+[[languages]]
+name = "cmake"

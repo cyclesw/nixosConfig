@@ -6,6 +6,7 @@
     neofetch
 
     helix
+    emacs
     lazygit
     zoxide
     carapace
@@ -13,6 +14,10 @@
     xclip
     bat
 
+    # language server
+    cmake-language-server
+    nil
+    
     #hook
     direnv
   ];

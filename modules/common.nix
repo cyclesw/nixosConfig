@@ -57,7 +57,11 @@
   ];
 
 
-  programs.zsh.enable = true;
+  programs = {
+    nix-ld.enable = true;
+    zsh.enable = true;
+  };
+
 
   nixpkgs.config.permittedInsecurePackages = [
     "dotnet-sdk-6.0.428"
@@ -66,10 +70,6 @@
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "elasticsearch"
   ];
-
-  programs = {
-    nix-ld.enable = true;
-  };
 
   fonts = {
     packages = with pkgs; [

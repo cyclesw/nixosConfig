@@ -7,10 +7,13 @@
   ];
 
   programs = {
+    fish.enable = true;
     nushell = {
       enable = true;
       configFile.source = ./nushell/config.nu;
       loginFile.source =  ./nushell/login.nu;
+      extraConfig = ''
+       '';
     };
 
     zoxide = { 
@@ -37,6 +40,11 @@
       enable = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
+      loginExtra = "
+      if [[ -o interactive ]]; then
+          exec $(which nu)
+      fi
+      ";
       oh-my-zsh = {
         enable = true;
       };
