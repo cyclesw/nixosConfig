@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     ## shell
-    neofetch
+    fastfetch
 
     helix
     emacs
@@ -20,6 +20,7 @@
     
     #hook
     direnv
+    devenv
   ];
 
   programs = {
