@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:Nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:Nixos/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:Nixos/nixpkgs/nixos-25.05";
 
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL";
@@ -78,29 +78,10 @@
         system = "x86_64-linux";
       };
 
-    macos = let 
-      username = "cyclesw";
-      specialArgs = { inherit username; };
-    in
-      nixpkgs.lib.nixosSystem 
-      {
+      macos = import ./machines/macos.nix {
+        inherit inputs mypkgs;
+        enableGui = false;
         system = "aarch64-linux";
-        modules = [
-          ./configuration.nix
-          ./modules/default.nix
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.users.cyclesw = import ./users/${username}/home.nix;
-
-            # 使用 home-manager.extraSpecialArgs 自定义传递给 ./home.nix 的参数
-            # 取消注释下面这一行，就可以在 home.nix 中使用 flake 的所有 inputs 参数了
-            home-manager.extraSpecialArgs = inputs // specialArgs;
-          }
-        ];
       };
     };
   };

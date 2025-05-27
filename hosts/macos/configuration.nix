@@ -16,19 +16,19 @@
     ];
 
 
-  users.users.langliu = {
-    uid = 501;
-    extraGroups = [ "wheel" ];
-
-    # simulate isNormalUser, but with an arbitrary UID
-    isSystemUser = true;
-    group = "users";
-    createHome = true;
-    home = "/home/langliu";
-    homeMode = "700";
-    useDefaultShell = true;
-  };
-
+  # users.users.langliu = {
+  #   uid = 501;
+  #   extraGroups = [ "wheel" ];
+  #
+  #   # simulate isNormalUser, but with an arbitrary UID
+  #   isSystemUser = true;
+  #   group = "users";
+  #   createHome = true;
+  #   home = "/home/langliu";
+  #   homeMode = "700";
+  #   useDefaultShell = true;
+  # };
+  #
   security.sudo.wheelNeedsPassword = false;
 
   # This being `true` leads to a few nasty bugs, change at your own risk!

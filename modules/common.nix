@@ -23,7 +23,6 @@
 
     ### Server DEV ENV
     pkgs-stable.etcd
-    elasticsearch
     rsync
     
 

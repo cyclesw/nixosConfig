@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     ## shell
     fastfetch
+    ripgrep
 
     helix
     emacs
